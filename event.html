@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>EVENTS :: BALGRAM</title>
+
+    <meta name="title" content="BALGRAM Events">
+    <meta name="description" content="Explore upcoming events at BALGRAM. Join us to support vulnerable children and make a difference.">
+    <meta name="keywords" content="Child Care Institute, events, fundraising, toy drive, volunteer, Balgram, Panipat">
+
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="author" content="BALGRAM">
+
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="space.css">
+    <link rel="stylesheet" type="text/css" href="responsive.css">
+
+    <style>
+        body {
+            background-image: url('images/background.jpg'); /* New background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .events-container {
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white background for readability */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-details {
+            padding: 30px;
+            position: relative;
+        }
+
+        .event-date {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            background-color: #ff6666;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-date .day {
+            display: block;
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            display: block;
+            font-size: 1em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .event-content {
+            margin-top: 20px;
+        }
+
+        .event-title {
+            font-size: 1.8em;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .event-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .event-meta .meta-item i {
+            color: #ff6666;
+            margin-right: 5px;
+        }
+
+        .event-cta .btn-primary {
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .event-cta .btn-primary:hover {
+            background-color: #e65a5a;
+        }
+
+        .pagination-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .pagination li a {
+            border-radius: 50px;
+            min-width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            color: #555;
+            background-color: #eee;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .pagination li a:hover,
+        .pagination li a.active {
+            background-color: #ff6666;
+            color: #fff;
+        }
+
+        @media (min-width: 768px) {
+            .event-card {
+                flex-direction: row;
+            }
+
+            .event-image {
+                width: 40%;
+                height: auto;
+            }
+
+            .event-details {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header--fixed" class="header">
+        <div class="nav-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-4">
+                        <div class="phone">
+                            <i class="fa fa-volume-control-phone"></i>+91-90503-82141
+                        </div>
+                        <div class="email">
+                            <i class="fa fa-envelope"></i>balgramharyana@gmail.com
+                        </div>
+                        <a href="donation.html" class="btn btn-red">Donate</a>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-3 col-lg-4 ">
+                        <form class="top-search" action="#">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <div class="input-group-addon">
+                                        <input type="submit" value="Search">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="hidden-xs col-sm-6 col-md-4 col-lg-4">
+                        <div class="social">
+                            <a class="icon-facebook" href="#"><i class="fa fa-facebook-square"></i></a>
+                            <a class="icon-twitter" href="#"><i class="fa fa-twitter-square"></i></a>
+                            <a class="icon-pinterest" href="#"><i class="fa fa-pinterest-square"></i></a>
+                            <a class="icon-google-plus" href="#"><i class="fa fa-google-plus-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main-nav" class="main-nav">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><img class="retina" src="images/logo.png" alt="logo"></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-navbar">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="cause.html">Cause</a></li>
+                            <li><a href="event.html">Event</a></li>
+                            <li><a href="news.html">NEWS</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right hidden-xs">
+                            <li class="top-cart"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-title-section">
+        <div class="page-title-wrap">
+            <div class="page-title-overlay"></div>
+            <div class="page-title-info">
+                <h1 class="page-title">Upcoming Events</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="events-container">
+        <div class="event-card">
+            <div class="event-image">
+                <img src="https://thumbs.dreamstime.com/b/group-volunteer-people-joining-together-money-raising-event-donation-charity-work-ngo-related-activity-such-as-275381189.jpg " alt="Annual Fundraising Gala">
+            </div>
+            <div class="event-details">
+                <div class="event-date">
+                    <span class="day">21</span>
+                    <span class="month">Nov</span>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Annual Fundraising Gala</h3>
+                    <p class="event-description">Join us for our annual fundraising gala to support the children of Balgram. Enjoy a night of dinner, entertainment, and silent auctions as we work together to build a brighter future.</p>
+                    <div class="event-meta">
+                        <span class="meta-item"><i class="fa fa-clock-o"></i> 7:00 PM</span>
+                        <span class="meta-item"><i class="fa fa-map-marker"></i> Convention Hall, Las Vegas, USA</span>
+                    </div>
+                    <div class="event-cta">
+                        <a href="event-details.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image">
+                <img src="https://www.dlfmallofindia.com/images/eventsnaps/SUN_9746.jpg" alt="Holiday Toy Drive">
+            </div>
+            <div class="event-details">
+                <div class="event-date">
+                    <span class="day">15</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Holiday Toy Drive</h3>
+                    <p class="event-description">Help us bring holiday cheer to our children! Drop off new, unwrapped toys and gifts to make this holiday season special for every child in our care. Spread the joy and make a difference.</p>
+                    <div class="event-meta">
+                        <span class="meta-item"><i class="fa fa-clock-o"></i> 10:00 AM - 4:00 PM</span>
+                        <span class="meta-item"><i class="fa fa-map-marker"></i> Balgram Institute, Sonipat, India</span>
+                    </div>
+                    <div class="event-cta">
+                        <a href="event-details.html" class="btn btn-primary">Participate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image">
+                <img src="https://media.istockphoto.com/id/1359650657/photo/a-tribal-village-of-kheriya-sabar-people-in-purulia-west-bengal.jpg?s=612x612&w=0&k=20&c=uz79jvupb47U8zsyzy0SXM2EYNr8IvPpoUNeqF7VguU=" alt="Volunteer Orientation Day">
+            </div>
+            <div class="event-details">
+                <div class="event-date">
+                    <span class="day">10</span>
+                    <span class="month">Jan</span>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Volunteer Orientation Day</h3>
+                    <p class="event-description">Interested in becoming a volunteer? Join our orientation day to learn about the various ways you can help, meet our team, and see firsthand the impact you can have on a child's life.</p>
+                    <div class="event-meta">
+                        <span class="meta-item"><i class="fa fa-clock-o"></i> 1:00 PM</span>
+                        <span class="meta-item"><i class="fa fa-map-marker"></i> Balgram Institute, Sonipat, India</span>
+                    </div>
+                    <div class="event-cta">
+                        <a href="event-details.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination-container">
+            <ul class="pagination">
+                <li><a href="#" class="prev-next">&laquo; Previous</a></li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">Next &raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <div class="footer-top pd-top-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 footer-widget">
+                        <div class="footer-logo">
+                            <img class="retina" src="images/logo-footer.png" alt="logo">
+                            <p>
+                                We are committed to providing a safe haven and comprehensive support for vulnerable children in need. Our Child Care Institutute offers refuge and care for children facing various challenges, including runaway situations, trafficking, homelessness, and exploitation.
+                            </p>
+                            <div class="footer-social">
+                                <a href="#"><i class="fa fa-facebook-square"></i></a>
+                                <a href="#"><i class="fa fa-twitter-square"></i></a>
+                                <a href="#"><i class="fa fa-share-square"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 footer-widget">
+                        <div class="footer-address">
+                            <h3 class="footer-title">Institute Address</h3>
+                            <p>
+                                Bal Gram Rai.<br />
+                                Near Motilal Nehru Sports School<br />
+                                20th Mile,Rai<br />
+                                Sonipat-131029<br />
+                                Haryana (INDIA)<br />
+                            </p>
+                            <p>
+                                <i class="fa fa-phone"></i>+91-90503-82141
+                                <br>
+                                <i class="fa fa-envelope-o"></i>balgramharyana@gmail.com
+                            </p>
+                            <div class="footer-map">
+                                <a href="contact.html"><i class="fa fa-map-marker"></i>See in map</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 footer-widget">
+                        <h3 class="footer-title">Quick link</h3>
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="cause.html">Cause</a></li>
+                            <li><a href="event.html">Event</a></li>
+                            <li><a href="news.html">NEWS</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 footer-widget">
+                        <h3 class="footer-title">Registration</h3>
+                        <ul>
+                            <li><a href="/downloads/registration_home.jpeg">Certificate</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>&copy; Copyright 2024. All rights reserved.</span><br />
+                        <font face="Arial Narrow">Powered By </font>
+                        <a href="http://www.microlinks.biz" style="text-decoration: none">
+                            <font face="Arial Narrow">Microlinks</font>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/retina.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/headroom.min.js"></script>
+    <script type="text/javascript" src="js/jQuery.headroom.min.js"></script>
+    <script type="text/javascript" src="js/sticky-kit.min.js"></script>
+    <script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="js/jquery.waypoints.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.counterup.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYMloK_kzsasOQXg-xhGxnwvlAU3HTZWg&callback=initMap" async defer></script>
+
+    <script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .auth-form {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+        <div class="flex justify-center mb-6 border-b border-gray-200">
+            <button id="login-tab" class="py-3 px-6 text-lg font-semibold text-gray-800 border-b-2 border-transparent transition-colors duration-300">Log In</button>
+            <button id="signup-tab" class="py-3 px-6 text-lg font-semibold text-gray-800 border-b-2 border-transparent transition-colors duration-300">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Welcome Back</h2>
+            <div class="mb-4">
+                <label for="login-email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                <input type="email" id="login-email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors" placeholder="e.g., john.doe@example.com" required>
+            </div>
+            <div class="mb-4">
+                <label for="login-password" class="block text-gray-700 font-medium mb-2">Password</label>
+                <input type="password" id="login-password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-800 text-white py-3 rounded-lg font-bold hover:bg-blue-900 transition-colors">Log In</button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form" class="auth-form">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Create Your Account</h2>
+            <div class="mb-4">
+                <label for="signup-fullname" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                <input type="text" id="signup-fullname" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors" placeholder="e.g., John Doe" required>
+            </div>
+            <div class="mb-4">
+                <label for="signup-email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                <input type="email" id="signup-email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors" placeholder="e.g., john.doe@example.com" required>
+            </div>
+            <div class="mb-4">
+                <label for="signup-password" class="block text-gray-700 font-medium mb-2">Create Password</label>
+                <input type="password" id="signup-password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors" placeholder="Create a strong password" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-800 text-white py-3 rounded-lg font-bold hover:bg-blue-900 transition-colors">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginTab = document.getElementById('login-tab');
+            const signupTab = document.getElementById('signup-tab');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            
+            // Set initial active state
+            loginTab.classList.add('border-blue-800', 'text-blue-800');
+
+            function switchForm(formToShow, formToHide, tabToActivate, tabToDeactivate) {
+                formToShow.classList.add('active');
+                formToHide.classList.remove('active');
+                tabToActivate.classList.add('border-blue-800', 'text-blue-800');
+                tabToDeactivate.classList.remove('border-blue-800', 'text-blue-800');
+                formToShow.reset();
+                formToHide.reset();
+            }
+
+            loginTab.addEventListener('click', () => {
+                switchForm(loginForm, signupForm, loginTab, signupTab);
+            });
+
+            signupTab.addEventListener('click', () => {
+                switchForm(signupForm, loginForm, signupTab, loginTab);
+            });
+        });
+    </script>
+</body>
+</html>

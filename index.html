@@ -46,11 +46,8 @@
     <link rel="stylesheet" type="text/css" href="space.css">
     <link rel="stylesheet" type="text/css" href="responsive.css">
     
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.min.js"></script>
-        <script src="js/respond.min.js"></script>
-    <![endif]-->
+     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body>    
     <!-- Preloader -->
@@ -107,7 +104,18 @@
                             <a class="icon-pinterest" href="#"><i class="fa fa-pinterest-square"></i></a>
                             <a class="icon-google-plus" href="#"><i class="fa fa-google-plus-square"></i></a>
                         </div>
+                            ` <div id="auth-buttons" class="space-x-4">
+      <button id="login-btn" class="bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition-colors">
+        Log In
+      </button>
+      <button id="signup-btn" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+        Sign Up
+      </button>
+    </div>
 
+    <button id="logout-btn" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors hidden">
+      Logout
+    </button>
  
                     </div>
                 </div>
@@ -701,6 +709,35 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYMloK_kzsasOQXg-xhGxnwvlAU3HTZWg&callback=initMap" async defer></script>
 
     <!-- Custom JS -->
+     <script>
+    const token = localStorage.getItem('token');
+    const authButtons = document.getElementById('auth-buttons');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (token) {
+      // User is logged in: hide login/signup, show logout
+      authButtons.classList.add('hidden');
+      logoutBtn.classList.remove('hidden');
+    } else {
+      // User not logged in: show login/signup, hide logout
+      authButtons.classList.remove('hidden');
+      logoutBtn.classList.add('hidden');
+    }
+
+    // Redirects
+    document.getElementById('login-btn').addEventListener('click', () => {
+      window.location.href = 'backend/login.html';
+    });
+    document.getElementById('signup-btn').addEventListener('click', () => {
+      window.location.href = 'backend/login.html';
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('token');
+      window.location.reload(); // reload page to update buttons
+    });
+  </script>
     <script type="text/javascript" src="js/custom.js"></script>
 </body>
 </html>

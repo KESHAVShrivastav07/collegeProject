@@ -32,6 +32,8 @@
             }
         }
     </style>
+      <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
@@ -74,33 +76,137 @@
         </form>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginTab = document.getElementById('login-tab');
-            const signupTab = document.getElementById('signup-tab');
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-            
-            // Set initial active state
-            loginTab.classList.add('border-blue-800', 'text-blue-800');
+  <script>// Replace the entire <script> section in your login.html with this:
 
-            function switchForm(formToShow, formToHide, tabToActivate, tabToDeactivate) {
-                formToShow.classList.add('active');
-                formToHide.classList.remove('active');
-                tabToActivate.classList.add('border-blue-800', 'text-blue-800');
-                tabToDeactivate.classList.remove('border-blue-800', 'text-blue-800');
-                formToShow.reset();
-                formToHide.reset();
-            }
+document.addEventListener('DOMContentLoaded', () => {
+    const loginTab = document.getElementById('login-tab');
+    const signupTab = document.getElementById('signup-tab');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
 
-            loginTab.addEventListener('click', () => {
+    // Set initial active state
+    loginTab.classList.add('border-blue-800', 'text-blue-800');
+
+    function switchForm(formToShow, formToHide, tabToActivate, tabToDeactivate) {
+        formToShow.classList.add('active');
+        formToHide.classList.remove('active');
+        tabToActivate.classList.add('border-blue-800', 'text-blue-800');
+        tabToDeactivate.classList.remove('border-blue-800', 'text-blue-800');
+        formToShow.reset();
+        formToHide.reset();
+    }
+
+    loginTab.addEventListener('click', () => {
+        switchForm(loginForm, signupForm, loginTab, signupTab);
+    });
+
+    signupTab.addEventListener('click', () => {
+        switchForm(signupForm, loginForm, signupTab, loginTab);
+    });
+
+    // ---------------- SIGNUP ----------------
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const userData = {
+            fullname: document.getElementById('signup-fullname').value,
+            email: document.getElementById('signup-email').value,
+            password: document.getElementById('signup-password').value
+        };
+
+        // Show loading state
+        const submitBtn = signupForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Creating Account...';
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+            console.log('Signup response:', result);
+
+            if (response.ok && result.success) {
+                alert(result.message + ' Please log in now.');
+                // Switch to login form after successful signup
                 switchForm(loginForm, signupForm, loginTab, signupTab);
+            } else {
+                alert(result.message); // Show backend error
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            alert('Server error. Please try again.');
+        } finally {
+            // Reset button state
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // ---------------- LOGIN ----------------
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const loginData = {
+            email: document.getElementById('login-email').value,
+            password: document.getElementById('login-password').value
+        };
+
+        // Show loading state
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Logging in...';
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginData)
             });
 
-            signupTab.addEventListener('click', () => {
-                switchForm(signupForm, loginForm, signupTab, loginTab);
-            });
-        });
-    </script>
+            const result = await response.json();
+            console.log('Login response:', result);
+
+            if (response.ok && result.success && result.token) {
+                // Store token
+                localStorage.setItem('token', result.token);
+                
+                console.log('Token stored successfully:', localStorage.getItem('token'));
+                
+                alert(result.message); // Login successful
+                
+                // Check for redirect parameter from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect');
+                
+                if (redirectUrl) {
+                    console.log('Redirecting to:', decodeURIComponent(redirectUrl));
+                    // Redirect back to the page that required login
+                    window.location.href = decodeURIComponent(redirectUrl);
+                } else {
+                    // Default redirect
+                    console.log('Redirecting to index.html');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                alert(result.message || 'Login failed. Please try again.'); // Invalid email/password
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('Network error. Please check your connection and try again.');
+        } finally {
+            // Reset button state
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+});
+</script>
+
 </body>
 </html>
